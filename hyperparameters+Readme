@@ -1,0 +1,56 @@
+All the command line options have a default value set to them
+optimization_algorithm = {'gd': 0,'momentum': 1,'nag': 2, 'adam': 3}
+activation_function  = {'sigmoid': 0, 'tanh': 1}
+
+
+valid_predictions.txt, test_predcitions.txt - contains predictions after traingin NAG for 100 epochs
+
+Some of the options and accuracy received are mentioned below : -
+
+
+
+python SGD.py --batch_size 170 --opt adam --lr 0.05 --size 50 ------------ 92%
+
+
+python SGD.py --batch_size 10 --opt nag --lr .25 --momentum 0.9 --sizes 50 ------- atleast 95% (test more)
+
+
+
+
+NAG-96.5%(Accuracy)
+import SGD
+net = SGD.NN([784,60,10],0.9,0,0) <-(network_architecture,momentum,opt,activation)
+net.setup()
+net.NAG(300,0.01,10)  <-(epoch,lr,batch_size)
+
+python SGD.py --batch_size 10 --opt nag --lr .5 --momentum 0.9 --sizes 60 ------- atleast 95% (test more)
+
+
+
+
+
+
+Momentum - 96.3%
+net = SGD.NN([784,60,10],0.9,0,0)
+net.setup()
+net.SGD(300,0.01,10)
+
+
+Mean Square Error with sigmoid - 95.12%
+import SGD
+net = SGD.NN([784,30,10],0,0,1)
+net.setup()
+net.SGD(300,1,10)
+
+
+ADAM ( 60 neurons gave 96 accuracy  lr = 0.5 and decrease it later - 100 epoch)
+import SGD
+net = SGD.NN([784,60,10],0,1,0)
+net.setup()
+net.ADAM(300,0.5,100)
+net.ADAM(300,0.01,100)
+net.ADAM(300,0.001,10)
+
+
+SGD , tanh with mean square -- 70 % takes too long
+
